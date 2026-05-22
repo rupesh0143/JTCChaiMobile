@@ -1,0 +1,190 @@
+Base_Url = https://api.jtcchai.com/api
+
+Product APIs
+Base Path: /api/products
+
+1) Get Products by Page:
+
+POST /api/products/page
+
+Fetch products with pagination.
+
+Request Body:
+json
+{
+  "pageno": 1,
+  "itemno": null
+}
+
+Response:
+json
+{
+  "success": true,
+  "message": "Products retrieved successfully",
+  "data": [
+    {
+      "ID": 1,
+      "Item_code": "CHAI-001",
+      "Item_desc": "Premium Masala Chai",
+      "Prize": 299,
+      "Original_Price": 399,
+      "Item_Weight": 250,
+      "ItemImage": "masala-chai.jpg",
+      "stars": 4.5,
+      "TotalCount": 120,
+      "Category": "Masala Chai"
+    }
+  ],
+  "totalCount": 25
+}
+
+2) Get Product by ID:
+
+GET /api/products/:id
+
+Fetch a single product by its ID.
+
+URL Parameters:
+id - Product ID (integer)
+
+Response:
+json
+{
+  "success": true,
+  "message": "Product retrieved successfully",
+  "data": {
+    "ID": 1,
+    "Item_code": "CHAI-001",
+    "Item_desc": "Premium Masala Chai",
+    "Prize": 299,
+    "Original_Price": 399,
+    "Item_Weight": 250,
+    "ItemImage": "masala-chai.jpg",
+    "stars": 4.5,
+    "TotalCount": 120,
+    "Category": "Masala Chai"
+  }
+}
+
+3) Get Product Categories:
+
+GET /api/products/category
+
+Fetch all product categories.
+
+Response:
+json
+{
+  "success": true,
+  "message": "Categories retrieved successfully",
+  "data": [
+    {
+      "Category": "Masala Chai",
+      "Count": 10
+    },
+    {
+      "Category": "Green Tea",
+      "Count": 8
+    }
+  ]
+}
+
+4) Get Product Image:
+
+GET /api/products/image/:name
+
+Get image filename for a product by name.
+
+URL Parameters:
+name - Product name or code
+
+Response:
+json
+{
+  "success": true,
+  "message": "Image found",
+  "data": {
+    "filename": "masala-chai.jpg",
+    "url": "/images/masala-chai.jpg"
+  }
+}
+
+Cart APIs:
+
+Base Path: /api/cart
+
+1) Add Item to Cart:
+
+POST /api/cart/add
+
+Add a product to user's cart.
+
+Request Body:
+json
+{
+  "userid": 1,
+  "itemcode": "CHAI-001",
+  "quantity": 2,
+  "price": 299,
+  "weight": 250
+}
+
+Response:
+json
+{
+  "success": true,
+  "message": "Item added to cart successfully"
+}
+
+2) Get Cart Items:
+
+POST /api/cart/get
+
+Fetch all items in user's cart.
+
+Request Body:
+json
+{
+  "userid": 1
+}
+
+Response:
+json
+{
+  "success": true,
+  "message": "Cart items retrieved successfully",
+  "data": [
+    {
+      "CartID": 1,
+      "UserID": 1,
+      "Item_code": "CHAI-001",
+      "Item_desc": "Premium Masala Chai",
+      "Quantity": 2,
+      "Price": 299,
+      "Weight": 250,
+      "ItemImage": "masala-chai.jpg",
+      "TotalPrice": 598
+    }
+  ]
+}
+
+3) Update Cart Item:
+
+POST /api/cart/update
+
+Update quantity of an item in cart.
+
+Request Body:
+json
+{
+  "userid": 1,
+  "itemcode": "CHAI-001",
+  "quantity": 3
+}
+
+Response:
+json
+{
+  "success": true,
+  "message": "Cart item updated successfully"
+}
